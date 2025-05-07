@@ -31,7 +31,7 @@ model Post {
 }
 
 model Student {
-  id        Int      @default(autoincrement()) @id
+  id        Int      @id @default(autoincrement())
   name      String
   surname   String
   age       Int?

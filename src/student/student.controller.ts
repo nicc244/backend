@@ -1,6 +1,8 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query, Delete, HttpCode, Header } from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { StudentService } from './student.service';
+
+
 
 @Controller('student')
 export class StudentController {
@@ -17,4 +19,19 @@ export class StudentController {
     createStudent(@Body() data: CreateStudentDto) {
         return this.studentService.createStudent(data);
     }
+
+    @Delete()
+    @HttpCode(200)
+    @Header('Content-Type', 'application/json')
+    deleteAllStudents() {
+      return this.studentService.deleteAll();
+    }
+
+    /*
+    @Delete()
+    deleteAllStudents() {
+        return this.studentService.deleteAll();
+    }
+    */
+
 }

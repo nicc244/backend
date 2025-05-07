@@ -23,4 +23,41 @@ export class StudentService {
         })
     }
 
+
+    async deleteAll(): Promise<{ count: number }> {
+        await this.prisma.$executeRawUnsafe(`DELETE FROM Student`);
+        await this.prisma.$executeRawUnsafe(`DELETE FROM sqlite_sequence WHERE name='Student'`);
+        return { count: 0 };
+      }
+      
+
+
+    /*
+    async deleteAll(): Promise<{ count: number }> {
+        const deleted = await this.prisma.student.deleteMany();
+      
+        
+        await this.prisma.$executeRawUnsafe(`DELETE FROM sqlite_sequence WHERE name='student'`);
+      
+        
+        await this.prisma.$executeRawUnsafe(`VACUUM`);
+      
+        return deleted;
+      }
+      
+
+    //------------------------------------------
+
+
+    async deleteAll(): Promise<{ count: number }> {
+        const deleted = await this.prisma.student.deleteMany();
+        await this.prisma.$executeRawUnsafe(`DELETE FROM sqlite_sequence WHERE name='student'`);
+        return deleted;
+        //return this.prisma.student.deleteMany();
+      }
+*/
+      
+
+      
+
 }
