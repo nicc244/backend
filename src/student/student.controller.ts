@@ -19,6 +19,17 @@ export class StudentController {
     createStudent(@Body() data: CreateStudentDto) {
         return this.studentService.createStudent(data);
     }
+    
+    
+    @Delete(':id')
+    @HttpCode(200)
+    @Header('Content-Type', 'application/json')
+    deleteStudent(@Param('id') id: string) {
+      return this.studentService.deleteStudent(+id);
+    }
+      
+
+
 
     @Delete()
     @HttpCode(200)
@@ -26,6 +37,9 @@ export class StudentController {
     deleteAllStudents() {
       return this.studentService.deleteAll();
     }
+
+    
+
 
     /*
     @Delete()

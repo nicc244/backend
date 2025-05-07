@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateStudentDto } from './dto/create-student.dto';
+import { Student } from '@prisma/client';
 
 @Injectable()
 export class StudentService {
@@ -23,6 +24,15 @@ export class StudentService {
         })
     }
 
+
+
+    async deleteStudent(id: number) {
+    return this.prisma.student.delete({
+    where: { id },
+    });
+}
+
+      
 
     async deleteAll(): Promise<{ count: number }> {
         await this.prisma.$executeRawUnsafe(`DELETE FROM Student`);
